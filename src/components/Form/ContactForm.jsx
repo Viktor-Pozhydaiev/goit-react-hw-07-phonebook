@@ -28,7 +28,7 @@ export const ContactForm = () => {
       return;
     } else if (contacts.find(contact => contact.number === contactNumber)) {
       Notiflix.Notify.failure(
-        `Contact  ${contactName}  ${contactNumber} is already  in contacts.`
+        `Contact  ${contactNumber} is already  in contacts.`
       );
       form.reset();
     } else {
