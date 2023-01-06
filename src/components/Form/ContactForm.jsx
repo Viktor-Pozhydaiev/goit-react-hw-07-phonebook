@@ -24,7 +24,7 @@ export const ContactForm = () => {
       )
     ) {
       Notiflix.Notify.failure(`${contactName} is already  in contacts.`);
-
+      form.reset();
       return;
     } else {
       dispatch(addContacts({ name: contactName, number: contactNumber }));
