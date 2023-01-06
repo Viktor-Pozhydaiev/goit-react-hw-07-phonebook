@@ -1,8 +1,8 @@
 import css from '../ContactList/Contact.module.css';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContacts } from 'redux/contactsSlice';
 import Notiflix from 'notiflix';
+import { deleteContacts } from 'redux/operations';
 
 export const Contact = ({ id, number, name }) => {
   const dispatch = useDispatch();

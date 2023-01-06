@@ -1,14 +1,14 @@
 import css from '../Form/Form.module.css';
-import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'redux/contactsSlice';
+
 import Notiflix from 'notiflix';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { Filter } from 'components/Filter/Filter';
+import { addContacts } from 'redux/operations';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handelSubmit = event => {
     event.preventDefault();
@@ -16,6 +16,7 @@ export const ContactForm = () => {
     const form = event.target;
     const newName = event.target.name.value;
     const number = event.target.number.value;
+    console.log(number);
     if (contacts.find(({ name }) => name === newName)) {
       Notiflix.Notify.failure(`${newName} is already  in contacts.`);
       form.reset();
@@ -38,7 +39,7 @@ export const ContactForm = () => {
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            id={nanoid()}
+            id="name"
             placeholder="Enter name.."
             required
           />
@@ -49,7 +50,7 @@ export const ContactForm = () => {
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             placeholder="Enter number.."
-            id={nanoid()}
+            id="number"
             required
           />
           <button className={css.form_btn} type="submit">
