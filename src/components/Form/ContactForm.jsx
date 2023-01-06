@@ -13,17 +13,22 @@ export const ContactForm = () => {
   const handelSubmit = event => {
     event.preventDefault();
 
+    const { name, number } = event.target;
+
     const form = event.target;
-    const newName = event.target.name.value;
-    const number = event.target.number.value;
-    console.log(number);
-    if (contacts.find(({ name }) => name === newName)) {
-      Notiflix.Notify.failure(`${newName} is already  in contacts.`);
-      form.reset();
+    const contactName = name.value;
+    const contactNumber = number.value;
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === contactName.toLowerCase()
+      )
+    ) {
+      Notiflix.Notify.failure(`${contactName} is already  in contacts.`);
+
       return;
     } else {
-      dispatch(addContacts(newName, number));
-      Notiflix.Notify.success(`You added new contact ${newName}. `);
+      dispatch(addContacts({ name: contactName, number: contactNumber }));
+      Notiflix.Notify.success(`You added new contact ${contactName}. `);
     }
 
     form.reset();

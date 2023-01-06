@@ -7,7 +7,6 @@ import { selectFilteredContacts } from 'redux/selectors';
 export const ContactList = ({ title }) => {
   const contacts = useSelector(selectFilteredContacts);
   const reversedContacts = [...contacts].reverse();
-  console.log(contacts);
 
   return (
     <>
